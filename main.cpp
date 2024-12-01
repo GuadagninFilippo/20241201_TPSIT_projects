@@ -2,28 +2,18 @@
 #include "User.h"
 using namespace std;
 
-void showMenu()
-{
-    cout << "\n--- Menu ---\n";
-    cout << "1. Aggiungere entrate mensilli" << endl;
-    cout << "2. Depositare denaro sul conto" << endl;
-    cout << "3. Prelevare denaro dal conto" << endl;
-    cout << "4. Fare un investimento" << endl;
-    cout << "5. Avanzare nel tempo" << endl;
-    cout << "6. Mostrare lo stato" << endl;
-    cout << "0. Uscire" << endl;
-    cout << "Scegli un'opzione: ";
-}
+void showMenu();
 
 int main()
 {
     User user("Mario Rossi");
 
-    bool running{true};
+    bool run{true};
 
-    while (running)
+    while (run)
     {
         showMenu();
+        
         int scelta{0};
         cin >> scelta;
 
@@ -92,7 +82,7 @@ int main()
             break;
         }
         case 0:
-            running = false;
+            run = false;
             cout << "Chiusura del programma. Arrivederci" << endl;
             break;
         default:
@@ -101,4 +91,18 @@ int main()
     }
 
     return 0;
+}
+
+void showMenu()
+{
+    cout << endl;
+    cout << "--- Menu ---" << endl;
+    cout << "1. Aggiungere entrate mensilli" << endl;
+    cout << "2. Depositare denaro sul conto" << endl;
+    cout << "3. Prelevare denaro dal conto" << endl;
+    cout << "4. Fare un investimento" << endl;
+    cout << "5. Avanzare nel tempo" << endl;
+    cout << "6. Mostrare lo stato" << endl;
+    cout << "0. Uscire" << endl;
+    cout << "Scegli un'opzione: ";
 }

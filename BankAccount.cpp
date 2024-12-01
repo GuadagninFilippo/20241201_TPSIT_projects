@@ -47,18 +47,48 @@ void BankAccount::invest(double amount, int duration, int risk)
     balance -= amount;
     double gainLoss{0.0};
 
-    // Calcolo del guadagno/perdita basato su rischio e durata
-    switch (risk)
+    // calcolo del guadagno/perdita basato su rischio e durata
+    if (risk == 1) // basso
     {
-    case 1: // basso rischio
-        gainLoss = duration * ((rand() % 2 == 0) ? 0.015 * amount : -0.01 * amount);
-        break;
-    case 2: // medio rischio
-        gainLoss = duration * ((rand() % 2 == 0) ? 0.025 * amount : -0.025 * amount);
-        break;
-    case 3: // alto rischio
-        gainLoss = duration * ((rand() % 2 == 0) ? 0.1 * amount : -0.1 * amount);
-        break;
+        if (rand() % 2 == 0)
+        {
+            gainLoss = duration * (0.015 * amount);
+        }
+        else
+        {
+            gainLoss = duration * (-0.01 * amount);
+        }
+    }
+
+    if (risk == 2) // medio
+    {
+        if (rand() % 2 == 0)
+        {
+            gainLoss = duration * (0.025 * amount);
+        }
+        else
+        {
+            gainLoss = duration * (-0.025 * amount);
+        }
+    }
+
+    if (risk == 3) // alto
+    {
+        if (rand() % 2 == 0)
+        {
+            gainLoss = duration * (0.1 * amount);
+        }
+        else
+        {
+            gainLoss = duration * (-0.1 * amount);
+        }
+    }
+
+    if (risk != 1 && risk != 2 && risk != 3)
+    {
+        cout << "Errore: Livello di rischio non valido." << endl;
+        balance += amount; // ripristina il saldo originale
+        return;
     }
 
     balance = balance + amount + gainLoss;
@@ -70,8 +100,8 @@ void BankAccount::invest(double amount, int duration, int risk)
 
 void BankAccount::advanceTime(int months)
 {
-    // avanzamento del tempo e calcolo del ritorno sugli investimenti maturati
-    for (size_t i{0}; i < investments.size(); i++)
+    // Avanzamento del tempo e calcolo del ritorno sugli investimenti maturati
+    for (int i{0}; i < static_cast<int>(investments.size()); i++)
     {
         investments[i].advanceTime(months);
         if (investments[i].isMatured())
@@ -80,19 +110,20 @@ void BankAccount::advanceTime(int months)
         }
     }
 
-    // rimozione degli investimenti maturati
-    for (size_t i{0}; i < investments.size();)
+    // tolgo investimenti maturati
+    for (int i{0}; i < static_cast<int>(investments.size());)
     {
         if (investments[i].isMatured())
         {
-            investments.erase(investments.begin() + i); // rimuove l'investimento maturo
+            investments.erase(investments.begin() + i); 
         }
         else
         {
-            ++i; // avanza solo se l'elemento non viene tolto
+            i++; // continua solo se l'elemento non viene rimosso
         }
     }
 }
+
 
 double BankAccount::getBalance() const
 {

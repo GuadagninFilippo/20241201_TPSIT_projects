@@ -21,21 +21,46 @@ double Investment::getReturn() const
     double multiplier{1.0};
 
     if (risk == 1)
-    { // Rischio basso
-        multiplier = (rand() % 100 < 90) ? 1.15 : 0.90;
+    { // basso
+        if (rand() % 100 < 90)
+        {
+            multiplier = 1.15;
+        }
+        else
+        {
+            multiplier = 0.90;
+        }
     }
-    else if (risk == 2)
-    { // Rischio medio
-        multiplier = (rand() % 100 < 70) ? 1.25 : 0.75;
+
+    if (risk == 2)
+    { // medio
+        if (rand() % 100 < 70)
+        {
+            multiplier = 1.25;
+        }
+        else
+        {
+            multiplier = 0.75;
+        }
     }
-    else if (risk == 3)
-    { // Rischio alto
-        multiplier = (rand() % 2 == 0) ? 2.0 : 0.5;
+
+    if (risk == 3)
+    { // alto
+        if (rand() % 2 == 0)
+        {
+            multiplier = 2.0;
+        }
+        else
+        {
+            multiplier = 0.5;
+        }
     }
-    else
+
+    if (risk != 1 && risk != 2 && risk != 3)
     {
         cout << "Livello di rischio non valido!" << endl;
     }
 
     return amount * multiplier;
 }
+

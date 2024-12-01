@@ -54,7 +54,8 @@ void User::advanceTime(int months)
 
 void User::checkStatus() const
 {
-    cout << "\n--- Stato di " << name << " ---" << endl;
+    cout << endl;
+    cout << "--- Stato di " << name << " ---" << endl;
     cout << "Portafoglio: " << wallet.getCash() << " €" << endl;
     account.checkStatus();
 }
