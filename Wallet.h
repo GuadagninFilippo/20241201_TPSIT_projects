@@ -4,14 +4,14 @@
 class Wallet
 {
 private:
-    double cash;
+    double money;
 
 public:
     Wallet();
 
-    void addCash(double amount);
+    void addCash(double total);
 
-    void spend(double amount);
+    void spend(double total);
 
     double getCash() const;
 

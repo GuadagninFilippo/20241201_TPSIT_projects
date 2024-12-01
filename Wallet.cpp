@@ -1,29 +1,29 @@
 #include "Wallet.h"
 
-Wallet::Wallet() : cash(100.0) {}
+Wallet::Wallet() : money(100.0) {}
 
-void Wallet::addCash(double amount)
+void Wallet::addCash(double total)
 {
-    if (amount > 0)
+    if (total > 0)
     {
-        cash += amount;
+        money += total;
     }
 }
 
-void Wallet::spend(double amount)
+void Wallet::spend(double total)
 {
-    if (amount <= cash)
+    if (total <= money)
     {
-        cash -= amount;
+        money -= total;
     }
 }
 
 double Wallet::getCash() const
 {
-    return cash;
+    return money;
 }
 
 void Wallet::addMonthlyIncome()
 {
-    cash += 100.0;
+    money += 100.0;
 }

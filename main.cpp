@@ -6,7 +6,7 @@ void showMenu();
 
 int main()
 {
-    User user("Mario Rossi");
+    User user("Mirko Pavan");
 
     bool run{true};
 
